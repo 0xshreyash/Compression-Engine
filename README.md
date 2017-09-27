@@ -3,4 +3,4 @@ Similarly Lempel Ziv algorithms also rely on the non-uniformity and repition of 
 
 Drawbacks: 
 
-* My algorithm needs to make two passes of the data in order to gauge how many elements there are.  
+* My algorithm needs to make two passes of the data inputStream order to gauge how many elements there are.  

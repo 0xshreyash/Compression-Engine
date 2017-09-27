@@ -15,7 +15,7 @@ public class BitOutputStream {
     public BitOutputStream(OutputStream out) {
         this.out = out;
         this.count = 1;
-        this.buffer = new boolean[Main.BYTE_LEN];
+        this.buffer = new boolean[Main.BYTE_LENGTH];
     }
 
     public void write(BitSequence x) throws IOException {
@@ -24,10 +24,10 @@ public class BitOutputStream {
         int index = sequence.length - 1;
         while(index >= 0) {
             this.buffer[8 - count] = sequence[index];
-            //System.out.println("Buffer index " + (Main.BYTE_LEN - count) + " contains " + this.buffer[8 - count]);
-            if (this.count == Main.BYTE_LEN) {
+            //System.out.println("Buffer index " + (Main.BYTE_LENGTH - count) + " contains " + this.buffer[8 - count]);
+            if (this.count == Main.BYTE_LENGTH) {
                 int num = 0;
-                for (int i = Main.BYTE_LEN - 1; i >= 0; i--) {
+                for (int i = Main.BYTE_LENGTH - 1; i >= 0; i--) {
                     num = 2 * num + (this.buffer[i] ? 1 : 0);
                     //System.out.println("Number is: " + num);
                 }
@@ -54,4 +54,6 @@ public class BitOutputStream {
     public int getCount() {
         return count;
     }
+
+
 }

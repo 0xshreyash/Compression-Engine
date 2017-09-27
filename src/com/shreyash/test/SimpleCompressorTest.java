@@ -23,15 +23,15 @@ public class SimpleCompressorTest {
 
         String fileName = simpleCompressor.getCompressedFileName("tester.txt");
         assertEquals("tester-compressed.txt", fileName);
-        assertEquals(1, simpleCompressor.getNumUniqueSymbols(dataStream));
-        assertEquals(1, simpleCompressor.logCeil(simpleCompressor.getNumUniqueSymbols(dataStream)));
+        assertEquals(1, simpleCompressor.getDictionary(dataStream).size());
+        assertEquals(1, simpleCompressor.logCeil(simpleCompressor.getDictionary(dataStream).size()));
 
         simpleCompressor.encode("tester.txt");
 
         Path pathCompressed = Paths.get("tester-compressed.txt");
         byte[] dataStreamCompressed = Files.readAllBytes(pathCompressed);
         for(int i = 0; i < dataStreamCompressed.length; i++) {
-            System.out.println(dataStreamCompressed[i]);
+            System.out.println("dataStreamCompressed " + i + " is " + dataStreamCompressed[i]);
         }
     }
 

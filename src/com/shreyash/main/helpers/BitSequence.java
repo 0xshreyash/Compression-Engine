@@ -11,6 +11,7 @@ public class BitSequence {
     public BitSequence(int length) {
         this.length = length;
         sequence = new boolean[length];
+        Arrays.fill(sequence, false);
     }
 
     public boolean[] getSequence() {
@@ -30,32 +31,32 @@ public class BitSequence {
     }
 
     public void setSequence(int number) {
-
+        //System.out.println("Setting sequence to value: " + number);
         Stack<Boolean> bits = new Stack<>();
         int count = 0;
-        //System.out.println("The number passed to me was: " + number);
+        System.out.println("The number passed to me was: " + number);
+
         while(number > 0) {
             int residue = number % 2;
+            System.out.println("Number is now: " + number + " which gave residue " + residue);
             //System.out.println("Residue is: " + residue);
             boolean toPush = residue==1?true:false;
             //System.out.println("Now pushing: " + toPush);
             bits.push(toPush);
-
             count++;
-
             number /= 2;
         }
-        while(count < length) {
-            bits.push(false);
-            count++;
-        }
-        int i = length - 1;
+
+        int i = count - 1;
         while(i >= 0) {
             //System.out.println("Printing");
             this.sequence[i] = bits.pop();
             i--;
         }
+        System.out.println(this);
     }
+
+
 
     @Override
     public boolean equals(Object o) {
@@ -73,5 +74,16 @@ public class BitSequence {
         int result = Arrays.hashCode(sequence);
         result = 31 * result + length;
         return result;
+    }
+
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer("[");
+        for(boolean val : this.sequence) {
+
+            sb.append(val + ", ");
+        }
+        sb.replace(sb.length() - 2, sb.length(), "]");
+        return sb.toString();
     }
 }

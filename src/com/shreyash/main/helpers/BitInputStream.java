@@ -7,31 +7,31 @@ import java.io.InputStream;
 
 public class BitInputStream {
 
-    private InputStream in;
-    private int num;
+    private InputStream inputStream;
+    private int number;
     private int count;
 
-    public BitInputStream(InputStream in) {
-        this.in = in;
-        this.count = Main.BYTE_LEN;
-        this.num = 0;
+    public BitInputStream(InputStream inputStream) {
+        this.inputStream = inputStream;
+        this.count = Main.BYTE_LENGTH;
+        this.number = 0;
     }
 
     public boolean read() throws IOException {
 
-        if (this.count == Main.BYTE_LEN){
-            this.num = this.in.read();
+        if (this.count == Main.BYTE_LENGTH) {
+            this.number = this.inputStream.read();
             this.count = 0;
         }
 
-        boolean x = (num%2 == 1);
-        num /= 2;
+        boolean x = (number %2 == 1);
+        number /= 2;
         this.count++;
         return x;
     }
 
     public void close() throws IOException {
-        this.in.close();
+        this.inputStream.close();
     }
 
 }

@@ -10,7 +10,8 @@ public class Main {
 
     private static int delimiterLen = 100;
     private static char delimiter = '=';
-    public static final int BYTE_LEN = 8;
+    public static final int BYTE_LENGTH = 8;
+
     public static void main(String[] args) {
 
         printDelimiter(delimiterLen, delimiter);

@@ -1,7 +1,6 @@
 package com.shreyash.test;
 
 import com.shreyash.main.Main;
-import com.shreyash.main.helpers.BitInputStream;
 import com.shreyash.main.helpers.BitOutputStream;
 import com.shreyash.main.helpers.BitSequence;
 import org.testng.annotations.Test;
@@ -99,7 +98,7 @@ public class BitOutputStreamTest {
         x.setSequence(3);
         outputStream.write(x);
         System.out.println("The count is:" + outputStream.getCount());
-        BitSequence y = new BitSequence(Main.BYTE_LEN - outputStream.getCount() + 1);
+        BitSequence y = new BitSequence(Main.BYTE_LENGTH - outputStream.getCount() + 1);
         y.setSequence(0);
         outputStream.write(y);
         Path path = Paths.get("test5.txt");
