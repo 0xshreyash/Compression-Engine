@@ -119,7 +119,7 @@ public class SimpleCompressor implements ICompressor {
 
             return dictionary;
 
-        } catch (IOExcepgit tion e) {
+        } catch (IOExcepgite) {
             e.printStackTrace();
             throw new FileNotFoundException(String.format(IOEXCEPTION_MESSAGE));
         }

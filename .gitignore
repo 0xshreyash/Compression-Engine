@@ -1,2 +1,10 @@
 # Idea-specific files
 .idea/
+.iml
+out/
+
+# Opened Vim files
+.swp
+
+# MacOS files
+.DS_Store
