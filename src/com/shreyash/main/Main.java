@@ -11,6 +11,10 @@ public class Main {
     private static int delimiterLen = 100;
     private static char delimiter = '=';
     public static final int BYTE_LENGTH = 8;
+    /**
+     * Length of an integer in bits
+     */
+    public static int INTEGER_LENGTH = 32;
 
     public static void main(String[] args) {
 

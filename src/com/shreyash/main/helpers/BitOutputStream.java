@@ -41,19 +41,20 @@ public class BitOutputStream {
     }
 
     public void close() throws IOException {
-        int num = 0;
-        for (int index = 0; index < 8; index++){
-            num = 2*num + (this.buffer[index] ? 1 : 0);
+        if (this.count != 1) {
+            //System.out.println("Count was not equal to 1");
+            BitSequence fillerSequence = new BitSequence(Main.BYTE_LENGTH - this.count + 1);
+            fillerSequence.setSequence(0);
+            this.write(fillerSequence);
         }
-
-        this.out.write(num - 128);
-
         this.out.close();
     }
 
     public int getCount() {
         return count;
     }
+
+
 
 
 }

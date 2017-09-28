@@ -35,10 +35,13 @@ public class BitSequence {
         Stack<Boolean> bits = new Stack<>();
         int count = 0;
         System.out.println("The number passed to me was: " + number);
-
+        int copyNumber = number;
+        if(number < 0) {
+            number = -number;
+        }
         while(number > 0) {
             int residue = number % 2;
-            System.out.println("Number is now: " + number + " which gave residue " + residue);
+            //System.out.println("Number is now: " + number + " which gave residue " + residue);
             //System.out.println("Residue is: " + residue);
             boolean toPush = residue==1?true:false;
             //System.out.println("Now pushing: " + toPush);
@@ -53,7 +56,19 @@ public class BitSequence {
             this.sequence[i] = bits.pop();
             i--;
         }
-        System.out.println(this);
+        i = 0;
+        boolean flip = false;
+        //System.out.println("The sequence for " + number + " is " + this);
+        if(copyNumber < 0) {
+            while(i < this.sequence.length) {
+                this.sequence[i] = flip ? !this.sequence[i] : this.sequence[i];
+                if (this.sequence[i] == true) {
+                    flip = true;
+                }
+                i++;
+            }
+        }
+        //System.out.println("Sequence corresponding to: " + copyNumber + " is " + this);
     }
 
 

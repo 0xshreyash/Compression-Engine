@@ -1,8 +1,10 @@
 package com.shreyash.main.encode;
 
 import com.shreyash.main.Main;
+import com.shreyash.main.decode.SimpleDecompressor;
 import com.shreyash.main.helpers.BitOutputStream;
 import com.shreyash.main.helpers.BitSequence;
+import com.shreyash.main.helpers.Common;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,6 +14,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.HashMap;
+
+import static com.shreyash.main.helpers.Common.logCeil;
 
 /**
  * This is a class that is effective when encoding files of
@@ -42,12 +46,9 @@ public class SimpleCompressor implements ICompressor {
     private static String CANNOT_COMPRESS_MESSAGE = "Cannot compress the file any further" +
             " using SimpleCompressor. Sorry!";
 
-    private static String IOEXCEPTION_MESSAGE = "There was an error while reading the file";
+    private static String IOEXCEPTION_MESSAGE = "There was an error while reading the file to encode";
 
-    /**
-     * Length of an integer in bits
-     */
-    private static int INTEGER_LENGTH = 32;
+
 
     /**
      * The stream the compressed representation is being written to
@@ -94,15 +95,22 @@ public class SimpleCompressor implements ICompressor {
                 File file = new File(compressedFileName);
                 //System.out.println("The filename is: " + newFileName);
                 this.outputStream = new BitOutputStream(new FileOutputStream(file));
+                BitSequence totalNumElements = new BitSequence(Main.INTEGER_LENGTH);
+                System.out.println("The total number of symbols is: " + (dataStream.length - 1));
+                totalNumElements.setSequence(dataStream.length - 1);
+                outputStream.write(totalNumElements);
                 BitSequence numUniqueElements = new BitSequence(Main.BYTE_LENGTH);
                 numUniqueElements.setSequence(uniqueElements);
+                System.out.println("Writing number of unique elements");
                 outputStream.write(numUniqueElements);
                 for (Byte keyByte : dictionary.keySet()) {
                     System.out.println("The key byte is: " + keyByte);
                     BitSequence key = new BitSequence(Main.BYTE_LENGTH);
                     BitSequence value = new BitSequence(bitsPerSymbol);
                     key.setSequence(keyByte);
-                    key.setSequence(dictionary.get(keyByte));
+                    int code = dictionary.get(keyByte);
+                    System.out.println("Code is: " + code);
+                    value.setSequence(dictionary.get(keyByte));
                     outputStream.write(key);
                     System.out.println("Printing sequence: " + key);
                     outputStream.write(value);
@@ -137,6 +145,7 @@ public class SimpleCompressor implements ICompressor {
                 dictionary.put(dataStream[i], value);
                 value += 1;
             }
+
         }
         return dictionary;
     }
@@ -165,12 +174,9 @@ public class SimpleCompressor implements ICompressor {
                 sequence.setSequence(dictionary.get(dataStream[i]));
                 outputStream.write(sequence);
             }
-            if (outputStream.getCount() != 1) {
-                System.out.println("Count was not equal to 1");
-                BitSequence fillerSequence = new BitSequence(Main.BYTE_LENGTH - outputStream.getCount() + 1);
-                fillerSequence.setSequence(0);
-                outputStream.write(fillerSequence);
-            }
+            // Make sure to fill the buffer to complete the last incomplete byte and then close the output
+            // stream.
+            outputStream.close();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -192,17 +198,4 @@ public class SimpleCompressor implements ICompressor {
         return outputFile;
     }
 
-    /**
-     * This method takes the number of of symbols for a given file and outputs
-     * the number of bits we need to encode each letter in the file.
-     * <p>
-     * I do a +1 because, we also need to accommodate for not being able to
-     * use a null byte here.
-     *
-     * @param numSymbols the number of unique symbols in the file
-     * @return the number of bits needed to encode the symbols
-     */
-    public int logCeil(int numSymbols) {
-        return (int) (Math.ceil(Math.log(numSymbols + 1) / Math.log(2)));
-    }
 }
