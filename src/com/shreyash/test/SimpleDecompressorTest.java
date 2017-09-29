@@ -29,5 +29,5 @@ public class SimpleDecompressorTest {
         byte[] f2 = Files.readAllBytes(reconstructed);
         assertEquals(true, Arrays.equals(f1, f2));
     }
-    
+
 }

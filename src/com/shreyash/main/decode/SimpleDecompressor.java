@@ -134,6 +134,7 @@ public class SimpleDecompressor implements IDecompressor {
 
         String[] fileParts = compressedFileName.split("\\.(?=[^\\.]+$)");
         String[] filePrefixParts = fileParts[0].split("-");
+        System.out.println(filePrefixParts[0]);
         String filePrefix = filePrefixParts[0];
         String outputFile = filePrefix + "-reconstructed." + fileParts[1];
         //System.out.println(outputFile);
