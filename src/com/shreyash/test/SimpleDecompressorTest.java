@@ -1,3 +1,6 @@
+/**
+ * @Author: Shreyash Patodia
+ */
 package com.shreyash.test;
 
 import com.shreyash.main.decode.SimpleDecompressor;
@@ -5,6 +8,9 @@ import org.junit.Test;
 
 import java.io.IOException;
 
+/**
+ * Tests written for the decompressor.
+ */
 public class SimpleDecompressorTest {
 
     @Test

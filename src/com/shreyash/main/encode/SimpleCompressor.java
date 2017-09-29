@@ -1,10 +1,11 @@
+/**
+ * @Author: Shreyash Patodia
+ */
 package com.shreyash.main.encode;
 
 import com.shreyash.main.Main;
-import com.shreyash.main.decode.SimpleDecompressor;
 import com.shreyash.main.helpers.BitOutputStream;
 import com.shreyash.main.helpers.BitSequence;
-import com.shreyash.main.helpers.Common;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -66,7 +67,7 @@ public class SimpleCompressor implements ICompressor {
      * @throws IOException
      */
     @Override
-    public void encode(String fileName) throws IOException {
+    public String encode(String fileName) throws IOException {
         try {
             /* Reading in the data from the file */
             Path path = Paths.get(fileName);
@@ -88,38 +89,47 @@ public class SimpleCompressor implements ICompressor {
             if (bitsPerSymbol >= Main.BYTE_LENGTH) {
 
                 Main.printLine(CANNOT_COMPRESS_MESSAGE);
-                return;
+                return fileName;
 
             } else {
 
                 File file = new File(compressedFileName);
                 //System.out.println("The filename is: " + newFileName);
                 this.outputStream = new BitOutputStream(new FileOutputStream(file));
+
+                /* Print the total number of elements to the compressed file */
                 BitSequence totalNumElements = new BitSequence(Main.INTEGER_LENGTH);
-                System.out.println("The total number of symbols is: " + (dataStream.length - 1));
-                totalNumElements.setSequence(dataStream.length - 1);
+                //System.out.println("The total number of symbols is: " + (dataStream.length));
+                totalNumElements.setSequence(dataStream.length);
                 outputStream.write(totalNumElements);
+
+                /* Print the total number of unique symbols to the compressed file */
                 BitSequence numUniqueElements = new BitSequence(Main.BYTE_LENGTH);
                 numUniqueElements.setSequence(uniqueElements);
-                System.out.println("Writing number of unique elements");
+                //System.out.println("Writing number of unique elements");
                 outputStream.write(numUniqueElements);
+
+                /* Write the dictionary to the file for easy mapping when decompressing */
                 for (Byte keyByte : dictionary.keySet()) {
-                    System.out.println("The key byte is: " + keyByte);
+                    //System.out.println("The key byte is: " + keyByte);
                     BitSequence key = new BitSequence(Main.BYTE_LENGTH);
                     BitSequence value = new BitSequence(bitsPerSymbol);
                     key.setSequence(keyByte);
                     int code = dictionary.get(keyByte);
-                    System.out.println("Code is: " + code);
+                    //System.out.println("Code is: " + code);
                     value.setSequence(dictionary.get(keyByte));
                     outputStream.write(key);
-                    System.out.println("Printing sequence: " + key);
+                    //System.out.println("Printing sequence: " + key);
                     outputStream.write(value);
                 }
-                mapSymbolsToCode(compressedFileName, dataStream, dictionary, bitsPerSymbol);
 
+                /* Write the file in the encoding */
+                mapSymbolsToCode(compressedFileName, dataStream, dictionary, bitsPerSymbol);
+                return compressedFileName;
             }
         }
-        /* Exception handling */ catch (IOException e) {
+        /* Exception handling */
+        catch (IOException e) {
             throw new IOException(IOEXCEPTION_MESSAGE);
         }
     }
@@ -135,11 +145,11 @@ public class SimpleCompressor implements ICompressor {
      * @return the dictionary mapping codes to symbols
      */
     public HashMap<Byte, Integer> getDictionary(byte[] dataStream) {
-        /* Counting the number of unique bytes */
+        /* Creating the dictionary giving each symbol a different value */
         HashMap<Byte, Integer> dictionary = new HashMap<>();
         int value = 1;
         // -1 to not include the last file termination byte.
-        for (int i = 0; i < dataStream.length - 1; i++) {
+        for (int i = 0; i < dataStream.length; i++) {
             if (dictionary.containsKey(dataStream[i]) == false) {
                 //System.out.println("Putting " + dataStream[i] + " into the dictionary");
                 dictionary.put(dataStream[i], value);
@@ -165,12 +175,11 @@ public class SimpleCompressor implements ICompressor {
     public void mapSymbolsToCode(String newFileName, byte[] dataStream, HashMap<Byte, Integer> dictionary,
                                                    int bitsPerSymbol) throws IOException {
 
-        File file = new File(newFileName);
-        //System.out.println("The filename is: " + newFileName);
+        /* For each symbol in the original input file, print it's code in the compressed file */
         try {
-            for (int i = 0; i < dataStream.length - 1; i++) {
+            for (int i = 0; i < dataStream.length; i++) {
                 BitSequence sequence = new BitSequence(bitsPerSymbol);
-                System.out.println("Writing for the " + i + "th time the " + dataStream[i]);
+                //System.out.println("Writing for the " + i + "th time the " + dataStream[i]);
                 sequence.setSequence(dictionary.get(dataStream[i]));
                 outputStream.write(sequence);
             }

@@ -1,3 +1,7 @@
+
+/**
+ * @Author: Shreyash Patodia
+ */
 package com.shreyash.test;
 
 import com.shreyash.main.helpers.BitSequence;
@@ -7,6 +11,9 @@ import java.util.Arrays;
 
 import static org.testng.AssertJUnit.assertEquals;
 
+/**
+ * Tests written for the BitSequence class.
+ */
 public class BitSequenceTest {
 
     @Test

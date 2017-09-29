@@ -1,3 +1,6 @@
+/**
+ * @Author: Shreyash Patodia
+ */
 package com.shreyash.test;
 
 import com.shreyash.main.encode.SimpleCompressor;
@@ -11,6 +14,9 @@ import java.nio.file.Paths;
 import static com.shreyash.main.helpers.Common.logCeil;
 import static org.testng.AssertJUnit.assertEquals;
 
+/**
+ * Tests written for the compressor.
+ */
 public class SimpleCompressorTest {
 
     @Test
