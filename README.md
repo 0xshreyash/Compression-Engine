@@ -10,14 +10,14 @@ In order to install gradle on a Mac use:
 
 On a linux enviornment:
 
-`
+```
 $ sudo add-apt-repository ppa:cwchien/gradle
 
 $ sudo apt-get update
 
 $ sudo apt-get install gradle
 
-`
+```
 
 After installing gradle, run:
 
