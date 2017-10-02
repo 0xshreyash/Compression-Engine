@@ -22,7 +22,7 @@
 	* Code quality and correctness. -> Done. 
 	* Error dectection and handling/reporting. -> Done.
 	* Appropriate use of commenting. -> Done. 
-	* Documentation on how to build and run your solution. 
+	* Documentation on how to build and run your solution. -> Done
 	* Use of appropriate build tools. -> Done.
 	* Edge case handling. -> Done.
 	* Presence of automable testing. -> Done
