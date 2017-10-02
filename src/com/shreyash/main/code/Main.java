@@ -3,6 +3,8 @@ package code; /**
  */
 
 
+import code.decode.IDecompressor;
+import code.encode.ICompressor;
 import code.encode.SimpleCompressor;
 import code.decode.SimpleDecompressor;
 
@@ -46,10 +48,10 @@ public class Main {
             String optionOpening = "You can run this application in two modes";
             printLine(optionOpening);
 
-            String optionLineOne = "-> Enter 1 to java.encode an input file";
+            String optionLineOne = "-> Enter 1 to encode an input file";
             printLine(optionLineOne);
 
-            String optionLineTwo = "-> Enter 2 to java.decode an encoded file";
+            String optionLineTwo = "-> Enter 2 to decode an encoded file";
             printLine(optionLineTwo);
 
             Scanner in = new Scanner(System.in);
@@ -111,7 +113,7 @@ public class Main {
         String startModeLine = "Entering encoding mode..";
         String inputFileRequest = "Please enter the input file you want to java.encode";
         String fileName = modeSetup(startModeLine, inputFileRequest);
-        SimpleCompressor compressor = new SimpleCompressor();
+        ICompressor compressor = new SimpleCompressor();
         try {
             String compressedFile = compressor.encode(fileName);
             printLine("Compressed file written to: " + compressedFile);
@@ -150,7 +152,7 @@ public class Main {
         String startModeLine = "Entering decoding mode..";
         String inputFileRequest = "Please enter the input file you want to java.decode";
         String fileName = modeSetup(startModeLine, inputFileRequest);
-        SimpleDecompressor decompressor = new SimpleDecompressor();
+        IDecompressor decompressor = new SimpleDecompressor();
         try {
             String decompressedFile = decompressor.decode(fileName);
             printLine("Reconstructed file written to: " + decompressedFile);

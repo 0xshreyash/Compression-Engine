@@ -63,7 +63,7 @@ set CMD_LINE_ARGS=%*
 :execute
 @rem Setup the command line
 
-set CLASSPATH=%APP_HOME%\lib\Compression-Engine.jar
+set CLASSPATH=%APP_HOME%\lib\Compression-Engine-1.0.jar
 
 @rem Execute Compression-Engine
 "%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %COMPRESSION_ENGINE_OPTS%  -classpath "%CLASSPATH%" code.Main %CMD_LINE_ARGS%

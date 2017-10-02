@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="code.CompressionDecompressionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-10-02T12:46:47" hostname="Shreyashs-MacBook-Pro.local" time="0.1">
+<testsuite name="code.CompressionDecompressionTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2017-10-02T13:20:53" hostname="Shreyashs-MacBook-Pro.local" time="11.482">
   <properties/>
-  <testcase name="testCompressionAndDecompression" classname="code.CompressionDecompressionTest" time="0.1"/>
-  <system-out><![CDATA[test_files/tester
+  <testcase name="testCompressionAndDecompressionBig" classname="code.CompressionDecompressionTest" time="9.523"/>
+  <testcase name="testCompressionAndDecompressionSix" classname="code.CompressionDecompressionTest" time="1.112"/>
+  <testcase name="testCompressionAndDecompression" classname="code.CompressionDecompressionTest" time="0.838"/>
+  <testcase name="testCompressionAndDecompressionSeven" classname="code.CompressionDecompressionTest" time="0.001"/>
+  <testcase name="testCompressionAndDecompressionShort" classname="code.CompressionDecompressionTest" time="0.008"/>
+  <system-out><![CDATA[test_files/big
+test_files/test6
+test_files/tester
+test_files/test7
+test_files/short
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
