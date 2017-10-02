@@ -19,13 +19,13 @@
 * README file should be included. Design choices, and any features or limitations of my implementations. 
 
 * Evaluations:
-	* Code quality and correctness. 
-	* Error dectection and handling/reporting.
+	* Code quality and correctness. -> Done. 
+	* Error dectection and handling/reporting. -> Done.
 	* Appropriate use of commenting. -> Done. 
 	* Documentation on how to build and run your solution. 
-	* Use of appropriate build tools. 
-	* Edge case handling. 
-	* Presence of automable testing. 
+	* Use of appropriate build tools. -> Done.
+	* Edge case handling. -> Done.
+	* Presence of automable testing. -> Done
 
 * Submission as a zip file.
 

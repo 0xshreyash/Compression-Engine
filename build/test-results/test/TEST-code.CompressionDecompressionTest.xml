@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="code.CompressionDecompressionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2017-10-02T12:46:47" hostname="Shreyashs-MacBook-Pro.local" time="0.1">
+  <properties/>
+  <testcase name="testCompressionAndDecompression" classname="code.CompressionDecompressionTest" time="0.1"/>
+  <system-out><![CDATA[test_files/tester
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

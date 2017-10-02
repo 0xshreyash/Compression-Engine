@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="code.BitSequenceTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2017-10-02T12:46:47" hostname="Shreyashs-MacBook-Pro.local" time="0.002">
+  <properties/>
+  <testcase name="lengthTest" classname="code.BitSequenceTest" time="0.0"/>
+  <testcase name="writeTestOne" classname="code.BitSequenceTest" time="0.0"/>
+  <testcase name="writeTestSix" classname="code.BitSequenceTest" time="0.0"/>
+  <testcase name="writeTestTwo" classname="code.BitSequenceTest" time="0.001"/>
+  <testcase name="writeTestFive" classname="code.BitSequenceTest" time="0.0"/>
+  <testcase name="writeTestFour" classname="code.BitSequenceTest" time="0.0"/>
+  <testcase name="writeTestNine" classname="code.BitSequenceTest" time="0.0"/>
+  <testcase name="writeTestEight" classname="code.BitSequenceTest" time="0.0"/>
+  <testcase name="writeTestSeven" classname="code.BitSequenceTest" time="0.0"/>
+  <testcase name="writeTestThree" classname="code.BitSequenceTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

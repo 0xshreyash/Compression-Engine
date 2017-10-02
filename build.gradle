@@ -1,0 +1,33 @@
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'idea'
+
+mainClassName = 'code.Main'
+
+repositories {
+    mavenCentral()
+}
+
+sourceSets {
+	main {
+		java {
+			srcDirs = ['src/com/shreyash/main']
+		}
+	}
+
+	test {
+		java {
+			srcDirs = ['src/com/shreyash/test']
+		}
+	}
+}
+
+dependencies {
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.testng:testng:6.9.10'
+
+}
+
+run {
+	standardInput = System.in
+}
